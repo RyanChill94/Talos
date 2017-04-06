@@ -1,3 +1,4 @@
+// 提供auth服务
 export function SatellizerConfig($authProvider) {
 	'ngInject';
 
@@ -10,3 +11,4 @@ export function SatellizerConfig($authProvider) {
 	$authProvider.tokenRoot = 'data';//compensates success response macro
 
 }
+

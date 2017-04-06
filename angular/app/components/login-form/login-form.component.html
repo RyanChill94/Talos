@@ -12,6 +12,8 @@
 			<input type="password" ng-model="vm.password">
 		</md-input-container>
 	</div>
-
-	<md-button type="submit" class="LoginForm-submit md-primary md-raised">Log in</md-button>
+	<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+		<md-button type="submit" class="LoginForm-submit md-primary md-raised">Log in</md-button>
+		<md-button class="md-primary" ui-sref="app.forgot_password" target="_blank">forget your password?</md-button>
+	</section>
 </form>

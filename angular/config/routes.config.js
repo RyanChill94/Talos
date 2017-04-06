@@ -11,7 +11,8 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 		.state('app', {
 			abstract: true,
             data: {},//{auth: true} would require JWT auth
-			views: {
+            //data: { auth : true}, // 开启权限认证
+            views: {
 				header: {
 					templateUrl: getView('header')
 				},
