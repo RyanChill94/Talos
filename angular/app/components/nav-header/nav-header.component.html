@@ -1,0 +1,63 @@
+<md-content class="Page-Container Header">
+    <div layout="row">
+        <div flex="90" flex-offset="5" class="Header-container">
+            <div layout="row" layout-align="space-between">
+                <div layout="row" layout-align="center center" ui-sref="app.landing">
+                    <img src="img/logo.png" class="Header-logo"/>
+                    <span class="Header-title">Talos</span>
+                    <small class="Header-title-small">大赛报名系统</small>
+                </div>
+                <div layout="row" layout-align="center stretch">
+                    <a hide-xs class="Header-link md-subhead" ui-sref="app.doc">使用说明</a>
+                    <a hide-xs class="Header-link md-subhead" ui-sref="app.show_competitions">赛事报名</a>
+                    <!--未注册时显示-->
+                    <div ng-if="vm.errorFlag">
+                        <a hide-xs class="Header-link md-subhead"
+                           href="#!/register">注册</a>
+                        <a hide-xs class="Header-link md-subhead"
+                           href="#!/login">登录</a>
+                    </div>
+
+                    <!--成功登陆时显示-->
+                    <div ng-if="!vm.errorFlag" class="Header-menu-wrapper">
+                        <md-menu-bar>
+                            <md-menu>
+                                <button ng-click="$mdMenu.open()">
+                                    {{ vm.userData.name | capitalize}}，欢迎您!
+                                </button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <small>注册时间 {{vm.userData.created_at |date:'MMMM yyyy' }}
+                                        </small>
+                                    </md-menu-item>
+                                    <md-menu-divider></md-menu-divider>
+
+                                    <md-menu-item>
+                                        <small>我的电子邮件 {{vm.userData.email}}</small>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button>
+                                            <small>我的报名记录</small>
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button>
+                                            <small>更改密码</small>
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-divider></md-menu-divider>
+                                    <md-menu-item>
+                                        <md-button>
+                                            <small>登出
+                                            </small>
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </md-menu-bar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</md-content>
