@@ -1,3 +1,4 @@
+import {GridListComponent} from './app/components/grid-list/grid-list.component';
 import {NavHeaderComponent} from './app/components/nav-header/nav-header.component';
 import {ResetPasswordComponent} from './app/components/reset-password/reset-password.component';
 import {ForgotPasswordComponent} from './app/components/forgot-password/forgot-password.component';
@@ -5,6 +6,7 @@ import {LoginFormComponent} from './app/components/login-form/login-form.compone
 import {RegisterFormComponent} from './app/components/register-form/register-form.component';
 
 angular.module('app.components')
+	.component('gridList', GridListComponent)
 	.component('navHeader', NavHeaderComponent)
 	.component('resetPassword', ResetPasswordComponent)
 	.component('forgotPassword', ForgotPasswordComponent)

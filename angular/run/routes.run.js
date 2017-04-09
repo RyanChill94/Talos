@@ -1,7 +1,7 @@
 export function RoutesRun($rootScope, $state, $auth) {
     'ngInject';
 
-
+    // 拦截请求
     let deregisterationCallback =  $rootScope.$on("$stateChangeStart", function(event, toState) {
 
         if (toState.data && toState.data.auth) {
