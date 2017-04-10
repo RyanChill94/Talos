@@ -55,4 +55,8 @@ export class DialogService {
 
         return this.$mdDialog.show(prompt);
     }
+
+    cancel(){
+        return this.$mdDialog.cancel();
+    }
 }

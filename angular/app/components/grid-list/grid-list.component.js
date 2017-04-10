@@ -1,27 +1,26 @@
+import {TabDialogController} from '../../../dialogs/tab-dialog/tab-dialog.dialog.js';
+import {FormDialogController} from '../../../dialogs/form-dialog/form-dialog.dialog';
+
+
+// import { formDialogController } from '../../../dialogs/tab-dialog/tab-dialog.dialog.js';
+
 class GridListController {
     constructor(DialogService) {
         'ngInject';
 
-        //api server get competition
-        //mock data
+        // #TODO use Service to fetch data
+        // mock data
         const rawData = {
             error: 'false',
-            items: {
-                now: [
-                    {name: '十佳歌手', time: '2017-3-3'},
-                    {name: '十佳歌手', time: '2017-3-3'},
-                    {name: '十佳歌手', time: '2017-3-3'},
-                    {name: '十佳歌手', time: '2017-3-3'},
-                    {name: '十佳歌手', time: '2017-3-3'}
-                ],
-                future: [
-                    {name: '挑战杯创业大赛', time: '2017-5-3'},
-                    {name: '挑战杯创业大赛', time: '2017-5-3'},
-                    {name: '挑战杯创业大赛', time: '2017-5-3'},
-                    {name: '挑战杯创业大赛', time: '2017-5-3'}
-                ]
-            }
+            items: [
+                {id: 1001, name: '十佳歌手1', time: '2017-3-3'},
+                {id: 1002, name: '十佳歌手2', time: '2017-3-3'},
+                {id: 1004, name: '十佳歌手3', time: '2017-3-3'},
+                {id: 1003, name: '十佳歌手4', time: '2017-3-3'},
+                {id: 1007, name: '十佳歌手5', time: '2017-3-3'}
+            ]
         };
+
 
         this.items = rawData.items;
         this.DialogService = DialogService;
@@ -30,17 +29,50 @@ class GridListController {
     $onInit() {
     }
 
-    doPrimaryAction() {
-        this.DialogService.alert('第一个动作','hahhahahaha');
+    // 马上报名
+    signUpNow($index) {
+        let transData = {
+            comId: this.items[$index].id,
+            name: this.items[$index].name,
+            time: this.items[$index].time
+        };
+
+        let options = {
+            controller: FormDialogController,
+            controllerAs: 'vm',
+            locals: {
+                transData : transData
+            }
+        };
+        this.DialogService.fromTemplate('form-dialog', options);
     }
 
-    doSecondaryAction() {
-        this.DialogService.alert('第二个动作','lallallallala');
+    // 赛事报名
+    getComDetail($index) {
+
+        // console.log(this.items.future[index]);
+
+        // 要传输的数据
+        let transData = {
+            comId: this.items[$index].id,
+            name: this.items[$index].name,
+            time: this.items[$index].time
+        };
+
+        let options = {
+            controller: TabDialogController,
+            controllerAs: 'vm',
+            clickOutsideToClose: true,
+            // targetEvent: $event,
+            // 要传输的数据
+            locals: {
+                transData : transData
+            }
+        };
+        this.DialogService.fromTemplate('tab-dialog', options);
     }
 
-    showDialog() {
-        alert('aaaaaa');
-    }
+
 }
 
 export const GridListComponent = {

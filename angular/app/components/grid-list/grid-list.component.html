@@ -1,18 +1,9 @@
 <md-list>
-    <md-subheader class="md-no-sticky">将要开展的比赛</md-subheader>
-    <md-list-item class="secondary-button-padding" ng-click="vm.doPrimaryAction($event)"
-                  ng-repeat="item in vm.items.future">
+    <md-list-item class="secondary-button-padding" ng-click="vm.getComDetail($index)"
+                  ng-repeat="item in vm.items">
         <p>{{ item.name }}</p>
-        <md-button class="md-secondary" ng-click="vm.doPrimaryAction()">马上报名</md-button>
-        <md-button class="md-secondary" ng-click="vm.doSecondaryAction()">更多信息</md-button>
-    </md-list-item>
-    <md-divider></md-divider>
-    <md-subheader class="md-no-sticky">正在开展的比赛</md-subheader>
-    <md-list-item class="secondary-button-padding" ng-click="vm.doPrimaryAction($event)"
-                  ng-repeat="item in vm.items.now">
-        <p>{{ item.name }}</p>
-        <md-button class="md-secondary" ng-click="vm.doPrimaryAction()">马上报名</md-button>
-        <md-button class="md-secondary" ng-click="vm.showDialog()">更多信息</md-button>
+        <md-button class="md-secondary" ng-click="vm.signUpNow($index)">马上报名</md-button>
+        <md-button class="md-secondary" ng-click="vm.getComDetail($index)">更多信息</md-button>
     </md-list-item>
 </md-list>
 

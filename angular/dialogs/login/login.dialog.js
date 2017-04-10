@@ -7,6 +7,7 @@ export class LoginController{
 
     save(){
         //Logic here
+        alert('23333');
         this.DialogService.hide();
     }
 
