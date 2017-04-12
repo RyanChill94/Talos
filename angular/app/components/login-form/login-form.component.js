@@ -25,7 +25,7 @@ class LoginFormController {
 				this.ToastService.show('Logged in successfully.');
 
 				// this.$state.go('app.landing');
-				this.$state.go('app.show_competitions');
+				this.$state.go('app.doc');
 
 			})
 			.catch(this.failedLogin.bind(this));

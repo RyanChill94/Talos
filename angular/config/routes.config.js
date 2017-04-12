@@ -10,7 +10,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('app', {
             abstract: true,
-            data: {},//{auth: true} would require JWT auth
+            data: {auth: false},//{auth: true} would require JWT auth
             //data: { auth : true}, // 开启权限认证
             views: {
                 header: {
@@ -18,8 +18,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
                 },
                 footer: {
                     templateUrl: getView('footer')
-                },
-                main: {}
+                }
             }
         })
         .state('app.landing', {
@@ -62,21 +61,70 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('app.show_competitions', {
-            url: '/show',
-            // data:{auth:true},
+        .state('app.doc', {
+            url: '/doc',
             views: {
                 'main@': {
+                    templateUrl: getView('doc')
+                }
+            }
+        })
+        .state('app.main_App', {
+            abstract: true,
+            data: {auth: false},//{auth: true} would require JWT auth
+            views: {
+                'main@': {
+                    templateUrl: getView('main-app')
+                }
+            }
+        })
+        .state('app.main_App.now', {
+            url: '/now',
+            data: {auth: false},
+            views: {
+                nav: {
+                    templateUrl: getView('nav-bar-left')
+                },
+                section: {
                     templateUrl: getView('show-competitions')
                 }
             }
         })
-        .state('app.doc',{
-            url:'/doc',
-            views:{
-                'main@' : {
-                    templateUrl:getView('doc')
+        .state('app.main_App.future', {
+            url: '/future',
+            data: {auth: false},
+            views: {
+                nav: {
+                    templateUrl: getView('nav-bar-left')
+                },
+                section: {
+                    templateUrl: getView('show-competitions-future')
                 }
             }
         })
+        .state('app.main_App.mine', {
+            url: '/mine',
+            data: {auth: false},
+            views: {
+                nav: {
+                    templateUrl: getView('nav-bar-left')
+                },
+                section: {
+                    templateUrl: getView('my-competitions')
+                }
+            }
+        })
+        .state('app.main_App.feedback', {
+            url: '/feedback',
+            data: {auth: false},
+            views: {
+                nav: {
+                    templateUrl: getView('nav-bar-left')
+                },
+                section: {
+                    templateUrl: getView('show-competitions-future')
+                }
+            }
+        })
+
 }

@@ -17,7 +17,7 @@ export class FormDialogController{
         // #TODO 提交表单
         let commitData = this.signup;
 
-        console.log(commitData);
+       $log(commitData);
 
         // this.$auth.signup(user)
         //     .then((response) => {
@@ -32,6 +32,7 @@ export class FormDialogController{
     }
 
     cancel(){
+
         this.DialogService.cancel();
     }
 }

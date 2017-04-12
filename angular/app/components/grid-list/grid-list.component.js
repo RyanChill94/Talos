@@ -47,7 +47,7 @@ class GridListController {
         this.DialogService.fromTemplate('form-dialog', options);
     }
 
-    // 赛事报名
+    // 赛事详情
     getComDetail($index) {
 
         // console.log(this.items.future[index]);

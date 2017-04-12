@@ -37,10 +37,11 @@ $api->group(['middleware' => ['api']], function ($api) {
 
 //protected API routes with JWT (must be logged in)
 $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
-    $api->get('user/me','UserController@getMe');
+
+    $api->get('users/me','UserController@getMe');
 
     // 修改自身信息
-    $api->get('user/me','UserController@putMe');
+    $api->get('users/me','UserController@putMe');
 });
 
 //test route
