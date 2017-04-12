@@ -75,17 +75,18 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             views: {
                 'main@': {
                     templateUrl: getView('main-app')
-                }
+                },
+                'nav@app.main_App':{
+                    templateUrl: getView('nav-bar-left')
+                },
+                section:{}
             }
         })
         .state('app.main_App.now', {
             url: '/now',
             data: {auth: false},
             views: {
-                nav: {
-                    templateUrl: getView('nav-bar-left')
-                },
-                section: {
+                'section@app.main_App': {
                     templateUrl: getView('show-competitions')
                 }
             }
@@ -94,10 +95,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             url: '/future',
             data: {auth: false},
             views: {
-                nav: {
-                    templateUrl: getView('nav-bar-left')
-                },
-                section: {
+                'section@app.main_App': {
                     templateUrl: getView('show-competitions-future')
                 }
             }
@@ -106,10 +104,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             url: '/mine',
             data: {auth: false},
             views: {
-                nav: {
-                    templateUrl: getView('nav-bar-left')
-                },
-                section: {
+                'section@app.main_App': {
                     templateUrl: getView('my-competitions')
                 }
             }
@@ -118,10 +113,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             url: '/feedback',
             data: {auth: false},
             views: {
-                nav: {
-                    templateUrl: getView('nav-bar-left')
-                },
-                section: {
+                'section@app.main_App': {
                     templateUrl: getView('show-competitions-future')
                 }
             }

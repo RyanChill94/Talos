@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="{!! elixir('css/vendor.css') !!}">
     <link rel="stylesheet" href="{!! elixir('css/app.css') !!}">
-    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    {{--<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>--}}
 
     <title>Laravel Angular Material Starter</title>
 
@@ -17,7 +17,7 @@
 <body>
 
     <div ui-view="header"></div>
-    <div ui-view="main"></div>
+    <div ui-view="main" style="min-height:60%"></div>
     <div ui-view="footer"></div>
 
     <script src="{!! elixir('js/vendor.js') !!}"></script>
