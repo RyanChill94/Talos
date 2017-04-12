@@ -1,0 +1,15 @@
+<md-list>
+    <md-list-item class="secondary-button-padding" ng-click="vm.getComDetail($index)"
+                  ng-repeat="item in vm.items">
+        <p> {{ $index + 1 }}</p>
+        <p ng-bind="item.name"></p>
+        <md-button class="md-secondary" ng-click="vm.getComDetail($index)">
+            <md-tooltip md-direction="left">{{ item.isExpire ? '未过期' : '已结束' }}</md-tooltip>
+            查看赛事详情
+        </md-button>
+        <md-button class="md-secondary" ng-click="vm.modify($index)" ng-disabled="!item.isExpire">
+            修改参赛信息
+        </md-button>
+    </md-list-item>
+</md-list>
+
