@@ -5,7 +5,7 @@ import {FormDialogController} from '../../../dialogs/form-dialog/form-dialog.dia
 // import { formDialogController } from '../../../dialogs/tab-dialog/tab-dialog.dialog.js';
 
 class GridListController {
-    constructor(DialogService) {
+    constructor(DialogService,$log) {
         'ngInject';
 
         // #TODO use Service to fetch data
@@ -21,9 +21,11 @@ class GridListController {
             ]
         };
 
+        //console.log($rootScope.me);
 
         this.items = rawData.items;
         this.DialogService = DialogService;
+        this.log = $log;
     }
 
     $onInit() {

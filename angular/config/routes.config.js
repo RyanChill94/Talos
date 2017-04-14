@@ -11,7 +11,6 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
         .state('app', {
             abstract: true,
             data: {auth: false},//{auth: true} would require JWT auth
-            //data: { auth : true}, // 开启权限认证
             views: {
                 header: {
                     templateUrl: getView('header')
@@ -71,7 +70,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
         })
         .state('app.main_App', {
             abstract: true,
-            data: {auth: false},//{auth: true} would require JWT auth
+            data: {auth: true},//{auth: true} would require JWT auth
             views: {
                 'main@': {
                     templateUrl: getView('main-app')
@@ -84,7 +83,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
         })
         .state('app.main_App.now', {
             url: '/now',
-            data: {auth: false},
+            data: {auth: true},
             views: {
                 'section@app.main_App': {
                     templateUrl: getView('show-competitions')
@@ -93,7 +92,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
         })
         .state('app.main_App.future', {
             url: '/future',
-            data: {auth: false},
+            data: {auth: true},
             views: {
                 'section@app.main_App': {
                     templateUrl: getView('show-competitions-future')
@@ -102,7 +101,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
         })
         .state('app.main_App.mine', {
             url: '/mine',
-            data: {auth: false},
+            data: {auth: true},
             views: {
                 'section@app.main_App': {
                     templateUrl: getView('my-competitions')
@@ -111,7 +110,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
         })
         .state('app.main_App.feedback', {
             url: '/feedback',
-            data: {auth: false},
+            data: {auth: true},
             views: {
                 'section@app.main_App': {
                     templateUrl: getView('show-competitions-future')

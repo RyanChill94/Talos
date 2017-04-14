@@ -11,6 +11,18 @@
 |
 */
 
+/*  #TODO test router
+
+
+//test route
+Route::any('queryDelete', ['uses' => 'StudentController@queryDel']);
+//带参数
+Route::any('getUser/{id}', ['uses' => 'StudentController@getModelFun']);
+
+Route::any('getrequest', 'StudentController@request1');
+
+*/
+
 // 引入中间件
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'AngularController@serveApp');
@@ -18,8 +30,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/unsupported-browser', 'AngularController@unsupported');
 
     // 使用 session
-    Route::any('session1',['uses' => 'StudentController@session1']);
-    Route::any('session2',['uses' => 'StudentController@session2']);
+    Route::any('session1', ['uses' => 'StudentController@session1']);
+    Route::any('session2', ['uses' => 'StudentController@session2']);
+
 });
 
 //public API routes
@@ -29,26 +42,23 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->post('auth/login', 'Auth\AuthController@login');
     $api->post('auth/register', 'Auth\AuthController@register');
 
+    $api->get('all', 'UserController@getAllUser');
+
     // Password Reset Routes...
     $api->post('auth/password/email', 'Auth\PasswordResetController@sendResetLinkEmail');
     $api->get('auth/password/verify', 'Auth\PasswordResetController@verify');
     $api->post('auth/password/reset', 'Auth\PasswordResetController@reset');
+
 });
 
 //protected API routes with JWT (must be logged in)
 $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
 
-    $api->get('users/me','UserController@getMe');
+    $api->get('users/me', 'UserController@getMe');
 
     // 修改自身信息
-    $api->get('users/me','UserController@putMe');
+    //$api->get('users/me','UserController@putMe');
 });
 
-//test route
-Route::any('queryDelete', ['uses' => 'StudentController@queryDel']);
-//带参数
-Route::any('getUser/{id}', ['uses' => 'StudentController@getModelFun']);
-
-Route::any('getrequest', 'StudentController@request1');
 
 

@@ -1,8 +1,9 @@
 export class FormDialogController{
-    constructor(DialogService,transData){
+    constructor(DialogService,$log,transData){
         'ngInject';
 
         this.DialogService = DialogService;
+        this.log = $log;
         this.transData = transData;
         this.name = this.transData.name;
         this.id = this.transData.comId;
@@ -17,7 +18,7 @@ export class FormDialogController{
         // #TODO 提交表单
         let commitData = this.signup;
 
-       $log(commitData);
+        this.log(commitData);
 
         // this.$auth.signup(user)
         //     .then((response) => {

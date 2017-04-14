@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use Auth;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+
+
 
 class UserController extends Controller
 {
@@ -18,4 +21,18 @@ class UserController extends Controller
         $user = Auth::user();
         return response()->success($user);
     }
+
+    public function putMe()
+    {
+        $user = Auth::user();
+        return response()->success($user);
+    }
+
+
+
+    public  function getAllUser(){
+        $user = User::all();
+        return response()->success($user);
+    }
+
 }
