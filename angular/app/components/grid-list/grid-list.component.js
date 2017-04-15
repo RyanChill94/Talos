@@ -5,30 +5,28 @@ import {FormDialogController} from '../../../dialogs/form-dialog/form-dialog.dia
 // import { formDialogController } from '../../../dialogs/tab-dialog/tab-dialog.dialog.js';
 
 class GridListController {
-    constructor(DialogService,$log) {
+    constructor(DialogService, $log, API) {
         'ngInject';
 
-        // #TODO use Service to fetch data
-        // mock data
-        const rawData = {
-            error: 'false',
-            items: [
-                {id: 1001, name: '十佳歌手1', time: '2017-3-3'},
-                {id: 1002, name: '十佳歌手2', time: '2017-3-3'},
-                {id: 1004, name: '十佳歌手3', time: '2017-3-3'},
-                {id: 1003, name: '十佳歌手4', time: '2017-3-3'},
-                {id: 1007, name: '十佳歌手5', time: '2017-3-3'}
-            ]
-        };
-
-        //console.log($rootScope.me);
-
-        this.items = rawData.items;
         this.DialogService = DialogService;
+        this.API = API;
         this.log = $log;
+
+
+        let fetch = this.API.service('now', this.API.all('race'));
+
+        fetch.one().get()
+            .then((response) => {
+                let data = response.plain().data.items;
+                this.log.log(data);
+
+                this.items = data;
+            });
+
     }
 
     $onInit() {
+
     }
 
     // 马上报名
@@ -36,14 +34,14 @@ class GridListController {
         let transData = {
             comId: this.items[$index].id,
             name: this.items[$index].name,
-            time: this.items[$index].time
+            time: this.items[$index].start_at
         };
 
         let options = {
             controller: FormDialogController,
             controllerAs: 'vm',
             locals: {
-                transData : transData
+                transData: transData
             }
         };
         this.DialogService.fromTemplate('form-dialog', options);
@@ -55,11 +53,7 @@ class GridListController {
         // console.log(this.items.future[index]);
 
         // 要传输的数据
-        let transData = {
-            comId: this.items[$index].id,
-            name: this.items[$index].name,
-            time: this.items[$index].time
-        };
+        let transData = this.items[$index];
 
         let options = {
             controller: TabDialogController,
@@ -68,7 +62,7 @@ class GridListController {
             // targetEvent: $event,
             // 要传输的数据
             locals: {
-                transData : transData
+                transData: transData
             }
         };
         this.DialogService.fromTemplate('tab-dialog', options);

@@ -3,7 +3,7 @@
 
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2> {{ vm.name }} - 报名表</h2>
+                <h2> {{ vm.message.name }} - 报名表</h2>
             </div>
         </md-toolbar>
 
@@ -12,7 +12,7 @@
                 <div layout="row">
                     <md-input-container class="md-block">
                         <label >赛事名称</label>
-                        <input type="text" value="vm.name" ng-model="vm.signup.name" disabled="disabled">
+                        <input type="text" value="vm.message.name" ng-model="vm.signup.name" disabled="disabled">
                     </md-input-container>
                 </div>
                 <div layout="row" layout-align="start">

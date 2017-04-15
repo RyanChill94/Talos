@@ -42,7 +42,7 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->post('auth/login', 'Auth\AuthController@login');
     $api->post('auth/register', 'Auth\AuthController@register');
 
-    $api->get('all', 'UserController@getAllUser');
+    $api->get('users/all', 'UserController@getAllUser');
 
     // Password Reset Routes...
     $api->post('auth/password/email', 'Auth\PasswordResetController@sendResetLinkEmail');
@@ -52,12 +52,23 @@ $api->group(['middleware' => ['api']], function ($api) {
 });
 
 //protected API routes with JWT (must be logged in)
-$api->group(['middleware' => ['api', 'api.auth']], function ($api) {
+// after test add 'api.auth'
+$api->group(['middleware' => ['api','api.auth']], function ($api) {
 
     $api->get('users/me', 'UserController@getMe');
 
+    $api->get('users/myrace','CompetitionController@getCometitionMy');
+
     // 修改自身信息
     //$api->get('users/me','UserController@putMe');
+
+    $api->get('race/now','CompetitionController@getCompetitionNow');
+
+    $api->get('race/future','CompetitionController@getCompetitionFuture');
+
+    $api->get('race/cata/{id}','CompetitionController@searchCatalog');
+
+
 });
 
 

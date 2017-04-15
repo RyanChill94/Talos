@@ -26,18 +26,15 @@ export class APIService {
                     if (token) {
                         headers.Authorization = 'Bearer ' + token;
                     }
-                });
-
-            // 有需要可以添加增加相应拦截
-            // Restangular.addResponseInterceptor(function (response, operation, what) {
-            //     if (operation === 'getList') {
-            //         var newResponse = response.data[what];
-            //         newResponse.error = response.error;
-            //         return newResponse;
-            //     }
-            //
-            //     return response;
-            // })
+                })
+                .addResponseInterceptor(function (response, operation, what) {
+                    if (operation === 'getList') {
+                        let newResponse = response.data[what];
+                            newResponse.error = response.error;
+                        return newResponse;
+                    }
+                    return response
+                })
 
         })
     }

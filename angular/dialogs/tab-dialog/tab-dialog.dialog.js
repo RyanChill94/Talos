@@ -3,11 +3,7 @@ export class TabDialogController{
         'ngInject';
 
         this.DialogService = DialogService;
-        this.transData = transData;
-        this.name = this.transData.name;
-        this.id = this.transData.comId;
-        this.time = this.transData.time;
-
+        this.message = transData;
     }
 
     save(){

@@ -2,7 +2,7 @@
     <form>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>{{vm.name}} - 详情</h2>
+                <h2>{{vm.message.name}} - 详情</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="vm.cancel()">
                     <md-icon md-svg-src="img/icons/close.svg" aria-label="Close dialog"></md-icon>
@@ -14,21 +14,19 @@
                 <md-tab label="简介">
                     <md-content class="md-padding">
                         <h1 class="md-title ">赛事简介</h1>
-                        <p> id {{ vm.id }}</p>
-                        <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere
-                            molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit
-                            erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac
-                            est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+                        <p> 比赛归属: {{vm.message.belong}}</p>
+                        <p> 比赛类型: {{vm.message.catalog}}</p>
+                        <p> 比赛报名时间: {{ vm.message.start_at}}</p>
+                        <p> 比赛报名截止时间: {{ vm.message.end_at}}</p>
                     </md-content>
                 </md-tab>
                 <md-tab label="详情">
                     <md-content class="md-padding">
                         <h1 class="md-title ">赛事报名详情</h1>
-                        <p> 赛事开始时间: {{ vm.time }}</p>
+                        <p> 赛事开始时间: {{ vm.messagetime }}</p>
                         <p> 比赛举办点: 长安校区东区505</p>
                         <p> 赛制:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-                        <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere
-                            molestie dictum. Morbi eget congue risus, quie, finibus commodo lectus.</p>
+                        <p> {{ vm.message.desc }}</p>
                     </md-content>
                 </md-tab>
                 <md-tab label="奖项">
