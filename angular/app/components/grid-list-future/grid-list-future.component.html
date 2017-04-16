@@ -1,0 +1,14 @@
+<md-list>
+    <md-list-item>
+        <p>比赛名称</p>
+        <p>报名日期</p>
+        <md-button class="md-secondary" >比赛信息</md-button>
+    </md-list-item>
+    <md-list-item class="secondary-button-padding" ng-click="vm.getComDetail($index)"
+                  ng-repeat="item in vm.items">
+        <p>{{ item.name }}</p>
+        <p>{{ item.start_at }}</p>
+        <md-button class="md-secondary" ng-click="vm.getComDetail($index)">比赛前瞻</md-button>
+    </md-list-item>
+</md-list>
+

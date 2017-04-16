@@ -46,4 +46,4 @@ export const RegisterFormComponent = {
 	controller: RegisterFormController,
 	controllerAs: 'vm',
 	bindings: {}
-}
+};

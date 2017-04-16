@@ -1,0 +1,87 @@
+<md-dialog style="min-width: 50%">
+    <form name='signupForm' ng-submit="vm.save()">
+
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2> {{ vm.message.name }} - 报名表</h2>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="row">
+                    <md-input-container class="md-block">
+                        <label >赛事名称</label>
+                        <input type="text" value="vm.message.name" ng-model="vm.signup.name" disabled="disabled">
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-align="start">
+                    <md-input-container flex="33">
+                        <label>姓名</label>
+                        <input required name="entrants" ng-model="vm.signup.entrants"
+                               ng-pattern="/(^[\u4e00-\u9fa5]{2,4}$)/">
+                        <div ng-messages="signupForm.entrants.$error">
+                            <div ng-message="required">姓名是必填的.</div>
+                            <div ng-message="pattern" class="my-message">同学你哪国人</div>
+                        </div>
+                    </md-input-container>
+                    <div flex="20"></div>
+                    <md-input-container flex="33">
+                        <label>移动电话</label>
+                        <input type="tel" required name="phone" ng-model="vm.signup.phone" ng-pattern="/^\d+$/"
+                               minlength="11" max="15">
+                        <div ng-messages="signupForm.phone.$error">
+                            <div ng-message-exp="['require','pattern','m inlength','maxlength']">
+                                请输入正确的联系方式以便联系您
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container>
+                        <label>性别</label>
+                        <md-select name="gender" ng-model="vm.signup.gender" required>
+                            <md-option value="male">男</md-option>
+                            <md-option value="female">女</md-option>
+                        </md-select>
+                        <div ng-messages="signupForm.gender.$error">
+                            <div ng-message="required">性别是必填的</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-align="start">
+                    <md-input-container flex="33">
+                        <label>年级</label>
+                        <md-select name="grade" ng-model="vm.signup.grade" required>
+                            <md-option value="grade1">大一</md-option>
+                            <md-option value="grade2">大二</md-option>
+                            <md-option value="grade3">大三</md-option>
+                            <md-option value="grade4">大四</md-option>
+                        </md-select>
+                        <div ng-messages="signupForm.grade.$error">
+                            <div ng-message="required">年级是必填的</div>
+                        </div>
+                    </md-input-container>
+                    <div flex="20"></div>
+                    <md-input-container flex="33">
+                        <label>班级</label>
+                        <input type="text" name="class" ng-model="vm.signup.class"
+                               ng-pattern="/^([\u4e00-\u9fa5]{2,8})(\d{2,4})([\u4e00-\u9fa5]?)$/"
+                               required>
+                        <div ng-messages="signupForm.class.$error">
+                            <div ng-message="required">告诉我你的班级啊</div>
+                            <div ng-message="pattern">请输入正确班级</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions>
+            <section layout="row"  layout-align="space-around center" layout-wrap style="min-width: 100%;padding-bottom: 20px">
+                <md-button class="md-raised" ng-click="vm.cancel()">我再想想</md-button>
+                <md-button class="md-primary md-raised" type="submit" ng-disabled="signupForm.$invalid">提交</md-button>
+            </section>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

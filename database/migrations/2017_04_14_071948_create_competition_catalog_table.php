@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreateCompetitionCatalogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('competition_catalog', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('name',255);  // 比赛属于什么类目
         });
     }
 
@@ -25,6 +25,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('posts');
+        Schema::drop('competition_catalog');
     }
 }
