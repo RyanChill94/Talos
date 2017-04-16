@@ -44,6 +44,7 @@ $api->group(['middleware' => ['api']], function ($api) {
 
     $api->get('users/all', 'UserController@getAllUser');
 
+
     // Password Reset Routes...
     $api->post('auth/password/email', 'Auth\PasswordResetController@sendResetLinkEmail');
     $api->get('auth/password/verify', 'Auth\PasswordResetController@verify');
@@ -66,7 +67,11 @@ $api->group(['middleware' => ['api','api.auth']], function ($api) {
 
     $api->get('race/future','CompetitionController@getCompetitionFuture');
 
-    $api->get('race/cata/{id}','CompetitionController@searchCatalog');
+    $api->get('race/mine','CompetitionController@getCompetitionMine');
+
+    //$api->get('race/cata/{id}','CompetitionController@searchCatalog');
+
+    $api->post('race/attend','CompetitionController@attendCompetition');
 
 
 });

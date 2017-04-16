@@ -1,38 +1,44 @@
-export class FormDialogController{
-    constructor(DialogService,$log,transData){
+export class FormDialogController {
+    constructor(DialogService, $log, API, $state, $rootScope,ToastService,transData) {
         'ngInject';
 
         this.DialogService = DialogService;
+        this.ToastService = ToastService;
+        this.API = API;
         this.log = $log;
         this.transData = transData;
+        this.state = $state;
+
         this.name = this.transData.name;
         this.id = this.transData.comId;
 
         this.signup = {};
         this.signup.name = this.name;
+        this.signup.userId = $rootScope.me.id;
         this.signup.comId = this.id;
     }
 
-    save(){
-        //Logic here
-        // #TODO 提交表单
-        let commitData = this.signup;
+    save() {
 
-        this.log(commitData);
+        // submit form
+        // api/race/attend
+        let attend = this.API.service('attend', this.API.all('race'));
+        let $state = this.state;
+        let toast = this.ToastService;
 
-        // this.$auth.signup(user)
-        //     .then((response) => {
-        //         //remove this if you require email verification
-        //         this.$auth.setToken(response.data);
-        //
-        //         this.ToastService.show('Successfully registered.');
-        //     })
-        //     .catch(this.failedRegistration.bind(this));
+        console.log(this.signup);
+        attend.post(this.signup).then(
+            () => {
+                toast.show('报名成功!');
+                // $state.go('app.main_App.mine');
+            }
+        );
+
 
         this.DialogService.hide();
     }
 
-    cancel(){
+    cancel() {
 
         this.DialogService.cancel();
     }

@@ -18,8 +18,11 @@ class CreateCompeitionSignupTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('competition_id');
             $table->foreign('competition_id')->references('id')->on('competition_list');
+            $table->string('entrants',5);
             $table->string('phone',11);
-            $table->dateTime('attend_time');        // 参加时间
+            $table->string('sex');
+            $table->string('grade');
+            $table->string('class');
             $table->timestamps();
         });
     }

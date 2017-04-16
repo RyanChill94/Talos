@@ -31,7 +31,7 @@
                         <input type="tel" required name="phone" ng-model="vm.signup.phone" ng-pattern="/^\d+$/"
                                minlength="11" max="15">
                         <div ng-messages="signupForm.phone.$error">
-                            <div ng-message-exp="['require','pattern','minlength','maxlength']">
+                            <div ng-message-exp="['require','pattern','m inlength','maxlength']">
                                 请输入正确的联系方式以便联系您
                             </div>
                         </div>
@@ -41,8 +41,8 @@
                     <md-input-container>
                         <label>性别</label>
                         <md-select name="gender" ng-model="vm.signup.gender" required>
-                            <md-option value="0">男</md-option>
-                            <md-option value="1">女</md-option>
+                            <md-option value="male">男</md-option>
+                            <md-option value="female">女</md-option>
                         </md-select>
                         <div ng-messages="signupForm.gender.$error">
                             <div ng-message="required">性别是必填的</div>
@@ -65,9 +65,12 @@
                     <div flex="20"></div>
                     <md-input-container flex="33">
                         <label>班级</label>
-                        <input type="text" name="class" ng-model="vm.signup.class" required>
+                        <input type="text" name="class" ng-model="vm.signup.class"
+                               ng-pattern="/^([\u4e00-\u9fa5]{2,8})(\d{2,4})([\u4e00-\u9fa5]?)$/"
+                               required>
                         <div ng-messages="signupForm.class.$error">
                             <div ng-message="required">告诉我你的班级啊</div>
+                            <div ng-message="pattern">请输入正确班级</div>
                         </div>
                     </md-input-container>
                 </div>

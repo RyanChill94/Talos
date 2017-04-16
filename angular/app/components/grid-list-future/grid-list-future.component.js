@@ -1,10 +1,8 @@
 import {TabDialogController} from '../../../dialogs/tab-dialog/tab-dialog.dialog.js';
-import {FormDialogController} from '../../../dialogs/form-dialog/form-dialog.dialog';
 
 
-// import { formDialogController } from '../../../dialogs/tab-dialog/tab-dialog.dialog.js';
 
-class GridListController {
+class GridListFutureController {
     constructor(DialogService, $log, API) {
         'ngInject';
 
@@ -13,7 +11,7 @@ class GridListController {
         this.log = $log;
 
 
-        let fetch = this.API.service('now', this.API.all('race'));
+        let fetch = this.API.service('future', this.API.all('race'));
 
         fetch.one().get()
             .then((response) => {
@@ -29,26 +27,7 @@ class GridListController {
 
     }
 
-    // 马上报名
-    signUpNow($index) {
-        let transData = {
-            comId: this.items[$index].id,
-            name: this.items[$index].name,
-            time: this.items[$index].start_at,
-            action: 'signup'
-        };
-
-        let options = {
-            controller: FormDialogController,
-            controllerAs: 'vm',
-            locals: {
-                transData: transData
-            }
-        };
-        this.DialogService.fromTemplate('form-dialog', options);
-    }
-
-    // 赛事详情
+    // 赛事前瞻
     getComDetail($index) {
 
         // console.log(this.items.future[index]);
@@ -72,9 +51,9 @@ class GridListController {
 
 }
 
-export const GridListComponent = {
-    templateUrl: './views/app/components/grid-list/grid-list.component.html',
-    controller: GridListController,
+export const GridListFutureComponent = {
+    templateUrl: './views/app/components/grid-list-future/grid-list-future.component.html',
+    controller: GridListFutureController,
     controllerAs: 'vm',
     bindings: {}
 };
