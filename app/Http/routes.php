@@ -44,7 +44,6 @@ $api->group(['middleware' => ['api']], function ($api) {
 
     $api->get('users/all', 'UserController@getAllUser');
 
-
     // Password Reset Routes...
     $api->post('auth/password/email', 'Auth\PasswordResetController@sendResetLinkEmail');
     $api->get('auth/password/verify', 'Auth\PasswordResetController@verify');
@@ -56,12 +55,16 @@ $api->group(['middleware' => ['api']], function ($api) {
 // after test add 'api.auth'
 $api->group(['middleware' => ['api','api.auth']], function ($api) {
 
+    /* #TODO
+     * 1.修改自身信息
+     * 2.user 增加字段 role [user,admin]管理员
+     * 3.管理员 管理窗口
+     * 4.退赛 必须确认
+     * 5.
+     * */
     $api->get('users/me', 'UserController@getMe');
 
     $api->get('users/myrace','CompetitionController@getCometitionMy');
-
-    // 修改自身信息
-    //$api->get('users/me','UserController@putMe');
 
     $api->get('race/now','CompetitionController@getCompetitionNow');
 
@@ -69,9 +72,9 @@ $api->group(['middleware' => ['api','api.auth']], function ($api) {
 
     $api->get('race/mine','CompetitionController@getCompetitionMine');
 
-    //$api->get('race/cata/{id}','CompetitionController@searchCatalog');
-
     $api->post('race/attend','CompetitionController@attendCompetition');
+
+    $api->get('race/user/{user_id}/com/{com_id}','CompetitionController@getCompetitionDetail');
 
 
 });

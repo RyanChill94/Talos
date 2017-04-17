@@ -11,11 +11,23 @@ export class FormDialogController {
 
         this.name = this.transData.name;
         this.id = this.transData.comId;
+        this.info = this.transData.info || {};
 
-        this.signup = {};
-        this.signup.name = this.name;
-        this.signup.userId = $rootScope.me.id;
-        this.signup.comId = this.id;
+
+        console.log(this.transData);
+        // init
+        this.signup = {
+            'name' : this.name,
+            'userId' : $rootScope.me.id,
+            'comId' : this.id,
+            'action' : this.transData.action,
+            'entrants': this.info.entrants || '',
+            'phone' : this.info.phone || '',
+            'gender' :　this.info.sex || '' ,
+            'grade' : this.info.grade || '',
+            'class' : this.info.class || '',
+        }
+
     }
 
     save() {
@@ -25,14 +37,28 @@ export class FormDialogController {
         let attend = this.API.service('attend', this.API.all('race'));
         let $state = this.state;
         let toast = this.ToastService;
+        let action = this.transData.action;
 
         console.log(this.signup);
         attend.post(this.signup).then(
-            () => {
-                toast.show('报名成功!');
-                // $state.go('app.main_App.mine');
+            (reponse) => {
+                if( action == 'signup'){
+                    if(reponse.plain().data.attend){
+                        console.log(reponse.plain());
+                        toast.show('报名成功!');
+                        $state.go('app.main_App.mine');
+                    }else{
+                        toast.show('未成功报名，请稍后重试')
+                    }
+
+                }else if( action == 'modify'){
+                    toast.show('修改成功!');
+                    $state.refresh();
+                }
             }
-        );
+        ).catch(function (err) {
+
+        });
 
 
         this.DialogService.hide();

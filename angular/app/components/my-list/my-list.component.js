@@ -2,18 +2,18 @@ import {FormDialogController} from '../../../dialogs/form-dialog/form-dialog.dia
 import {TabDialogController} from '../../../dialogs/tab-dialog/tab-dialog.dialog';
 
 class MyListController{
-    constructor(DialogService,API){
+    constructor(DialogService,API,$rootScope){
         'ngInject';
 
         this.DialogService = DialogService;
         this.API = API;
+        this.$rootScope = $rootScope;
 
         let fetch = this.API.service('mine', this.API.all('race'));
 
         fetch.one().get()
             .then((response) => {
-                let data = response.plain().data.items;
-                this.items = data;
+                this.items = response.plain().data.items;
             });
 
     }
@@ -21,22 +21,39 @@ class MyListController{
     $onInit(){
     }
 
+    // 修改报名
     modify($index) {
-        let transData = {
-            comId: this.items[$index].id,
-            name: this.items[$index].name,
-            time: this.items[$index].time,
-            action: 'modify'
-        };
+        // 获取比赛信息
+        let com_id = this.items[$index].id;
+        let user_id = this.$rootScope.me.id;
+        let fetchDeatil = this.API.all('race');
+        let DS = this.DialogService;
 
-        let options = {
-            controller: FormDialogController,
-            controllerAs: 'vm',
-            locals: {
-                transData : transData
-            }
-        };
-        this.DialogService.fromTemplate('form-dialog', options);
+        fetchDeatil.one('user',user_id).one('com',com_id)
+            .get()
+            .then(
+                (response) => {
+                    //console.log(response.data);
+                    this.info = response.data;
+
+                    let transData = {
+                        comId: com_id,
+                        name: this.items[$index].name,
+                        info :　this.info,
+                        action: 'modify'
+                    };
+
+                    let options = {
+                        controller: FormDialogController,
+                        controllerAs: 'vm',
+                        locals: {
+                            transData : transData
+                        }
+                    };
+
+                    DS.fromTemplate('form-dialog', options)
+                }
+            );
     }
 
     getComDetail($index) {

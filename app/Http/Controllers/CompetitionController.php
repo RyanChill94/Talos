@@ -44,43 +44,39 @@ class CompetitionController extends Controller
 
     }
 
-    public function getCompetitionMy()
-    {
-
-    }
-
     public function attendCompetition()
     {
 
         $user_id = \Auth::user()->id;
+        $user_action = Input::get('action');
 
-        // 判断选手该赛事是否已经参加
         try {
-            $hasAttend = Signup::where([
+            $Attend_id = Signup::where([
                 'user_id' => $user_id,
                 'competition_id' => Input::get('comId')
-            ])->exists();
+            ])->value('id');
 
-            if ($hasAttend) {
+            // 判断选手该赛事是否已经参加
+            if ($Attend_id && $user_action == 'signup') {
                 return response()->error('请勿重复报名', 422);
             }
-        } catch (\Exception $e) {
 
+            $attend = Signup::updateOrCreate(['id' => $Attend_id], [
+                'user_id' => Input::get('userId'),
+                'competition_id' => Input::get('comId'),
+                'entrants' => Input::get('entrants'),
+                'phone' => Input::get('phone'),
+                'sex' => Input::get('gender'),
+                'grade' => Input::get('grade'),
+                'class' => Input::get('class'),
+            ]);
+
+            return response()->success(compact('attend'));
+
+        } catch (\Exception $e) {
+            return response()->error($e, 500);
         }
 
-//        var_dump(Input::get('entrants'));
-
-        $attend = Signup::create([
-            'user_id' =>  Input::get('userId'),
-            'competition_id' => Input::get('comId'),
-            'entrants' => Input::get('entrants'),
-            'phone' => Input::get('phone'),
-            'sex' => Input::get('gender'),
-            'grade' => Input::get('grade'),
-            'class' => Input::get('class'),
-        ]);
-
-        return response()->success(compact('attend'));
     }
 
     public function getCompetitionMine()
@@ -88,11 +84,22 @@ class CompetitionController extends Controller
 
         $user_id = \Auth::user()->id;
 
-        $race_mine_id = Signup::where('user_id','=',$user_id)
+        $race_mine_id = Signup::where('user_id', '=', $user_id)
             ->lists('competition_id');
-        $race_mine = comList::whereIn('id',$race_mine_id)->get();
+        $race_mine = comList::whereIn('id', $race_mine_id)->get();
 
         return response()->success(['items' => $race_mine]);
+    }
+
+    public function getCompetitionDetail($userId, $comId)
+    {
+
+        $detail = Signup::where([
+            'user_id' => $userId,
+            'competition_id' => $comId
+        ])->first();
+
+        return response()->success($detail);
     }
 
 }
