@@ -1,3 +1,4 @@
+import {FeedbackComponent} from './app/components/feedback/feedback.component';
 import {GridListFutureComponent} from './app/components/grid-list-future/grid-list-future.component';
 import {MyListComponent} from './app/components/my-list/my-list.component';
 import {GridListComponent} from './app/components/grid-list/grid-list.component';
@@ -8,6 +9,7 @@ import {LoginFormComponent} from './app/components/login-form/login-form.compone
 import {RegisterFormComponent} from './app/components/register-form/register-form.component';
 
 angular.module('app.components')
+	.component('feedback', FeedbackComponent)
 	.component('gridListFuture', GridListFutureComponent)
 	.component('myList', MyListComponent)
 	.component('gridList', GridListComponent)

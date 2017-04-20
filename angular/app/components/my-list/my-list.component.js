@@ -39,7 +39,7 @@ class MyListController{
                     let transData = {
                         comId: com_id,
                         name: this.items[$index].name,
-                        info :　this.info,
+                        info: this.info,
                         action: 'modify'
                     };
 

@@ -113,7 +113,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             data: {auth: true},
             views: {
                 'section@app.main_App': {
-                    templateUrl: getView('show-competitions-future')
+                    templateUrl: getView('feedback')
                 }
             }
         })

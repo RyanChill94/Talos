@@ -11,17 +11,6 @@
 |
 */
 
-/*  #TODO test router
-
-
-//test route
-Route::any('queryDelete', ['uses' => 'StudentController@queryDel']);
-//带参数
-Route::any('getUser/{id}', ['uses' => 'StudentController@getModelFun']);
-
-Route::any('getrequest', 'StudentController@request1');
-
-*/
 
 // 引入中间件
 Route::group(['middleware' => ['web']], function () {
